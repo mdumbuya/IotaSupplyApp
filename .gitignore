@@ -1,0 +1,6 @@
+client.log
+output.txt
+package-lock.json
+package.json
+yarn.lock
+node_modules
