@@ -1,20 +1,28 @@
+
 const readline = require('readline');
+const { generateSeed } = require('./iota_functions/node_actions');
 
 function handleChoice(choice) {
     switch (choice) {
       case '1':
         // Implement functionality for creating channel and publishing message
-        createChannelAndPublishMessage();
+        generateSeed();
         break;
       case '2':
         // Implement functionality for fetching and displaying messages from a channel
-        fetchAndDisplayMessages();
+     
         break;
-      case '3':
+      case '2':
+        // Implement functionality for fetching and displaying messages from a channel
+      
+        break;
+      case '4':
         // Exit the program
+
         console.log('Exiting...');
         process.exit(0);
         break;
+
       default:
         console.log('Invalid choice. Please try again.');
         displayMenu();
@@ -24,28 +32,33 @@ function handleChoice(choice) {
 
 function displayMenu() {
 const options = [
-    '1. Create channel and publish message',
-    '2. Fetch and display messages from a channel',
-    '3. Exit'
+    '1. Create a product chanel',
+    '2. Record information',
+    '3. Fetch and display messages from a channel',
+    '4. Exit'
 ];
 
 console.log('--- Menu ---');
 options.forEach(option => console.log(option));
+}
 
-const rl = readline.createInterface({
+function startProgram() {
+  const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
-});
+  });
 
-rl.question('Enter your choice: ', choice => {
-    rl.close();
-    handleChoice(choice);
-});
-}
-  
-function startProgram() {
-displayMenu();
+  function promptChoice() {
+    rl.question('Enter your choice: ', choice => {
+      handleChoice(choice);
+      displayMenu();
+      promptChoice();
+    });
+  }
+
+  displayMenu();
+  promptChoice();
 }
 
-// Export the greet function to make it accessible in other files
+// Fuctions exported
 module.exports = { startProgram };
